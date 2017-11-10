@@ -1,5 +1,7 @@
 package lsg.weapons;
 
+import lsg.consumables.repair.RepairKit;
+
 public class Weapon {
 
     public static final String DURABILITY_STAT_STRING = "durability";
@@ -48,6 +50,12 @@ public class Weapon {
 
     public boolean isBroken() {
         return(durability<=0);
+    }
+
+    public void repairWith(RepairKit kit) {
+
+        durability = durability + kit.use();
+
     }
 
     @Override

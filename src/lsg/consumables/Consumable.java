@@ -26,7 +26,7 @@ public class Consumable {
         return name;
     }
 
-    private void setCapacity(int capacity) {
+    protected void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 

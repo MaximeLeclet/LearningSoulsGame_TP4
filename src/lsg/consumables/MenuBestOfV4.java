@@ -2,6 +2,8 @@ package lsg.consumables;
 
 import lsg.consumables.drinks.*;
 import lsg.consumables.food.*;
+import lsg.consumables.repair.RepairKit;
+
 import java.util.*;
 
 public class MenuBestOfV4 extends LinkedHashSet<Consumable> {
@@ -14,7 +16,7 @@ public class MenuBestOfV4 extends LinkedHashSet<Consumable> {
 
     public static void main(String[] args) {
 
-        MenuBestOfV4 menu = new MenuBestOfV4(Arrays.asList(new Hamburger(), new Wine(), new American(), new Coffee(), new Whisky()));
+        MenuBestOfV4 menu = new MenuBestOfV4(Arrays.asList(new Hamburger(), new Wine(), new American(), new Coffee(), new Whisky(), new RepairKit()));
         System.out.println(menu.toString());
 
     }

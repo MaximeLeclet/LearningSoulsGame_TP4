@@ -3,6 +3,7 @@ package lsg.characters;
 import lsg.consumables.Consumable;
 import lsg.consumables.drinks.Drink;
 import lsg.consumables.food.Food;
+import lsg.consumables.repair.RepairKit;
 import lsg.helpers.*;
 import lsg.weapons.*;
 
@@ -22,6 +23,7 @@ public abstract class Character {
     private int maxStamina;
     private Dice dice;
     private Weapon weapon;
+    private Consumable consumable;
 
     public Character() {
 
@@ -82,6 +84,14 @@ public abstract class Character {
         this.weapon = weapon;
     }
 
+    public Consumable getConsumable() {
+        return consumable;
+    }
+
+    public void setConsumable(Consumable consumable) {
+        this.consumable = consumable;
+    }
+
     public boolean isAlive() {
         return(this.getLife()>0);
     }
@@ -137,16 +147,27 @@ public abstract class Character {
 
     }
 
+    public void consume() {
+
+        if(consumable != null) { use(consumable); }
+
+    }
+
     public void use(Consumable consumable) {
 
         if(consumable instanceof Drink) {
 
-            drink((Drink)consumable);
+            drink((Drink) consumable);
 
         }
         else if(consumable instanceof Food) {
 
-            eat((Food)consumable);
+            eat((Food) consumable);
+
+        }
+        else if(consumable instanceof RepairKit) {
+
+            repairWeaponWith((RepairKit) consumable);
 
         }
 
@@ -166,6 +187,13 @@ public abstract class Character {
         System.out.println(name + " eats " + food.toString());
         int points = food.use();
         life = (life + points > maxLife) ? life + (maxLife - life) : life + points;
+
+    }
+
+    private void repairWeaponWith(RepairKit kit) {
+
+        System.out.println(name + " repairs " + weapon.toString() + " with " + kit.toString());
+        weapon.repairWith(kit);
 
     }
 
